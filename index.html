@@ -1,0 +1,46 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+  <meta charset="UTF-8">
+  <title>Библиотека</title>
+</head>
+<body>
+  <div class="header">
+    <div class="nav">
+      <ul>
+        <li><a href="{% url 'library:book_list' %}">Книги</a></li>
+        <li><a href="{% url 'library:staff_list' %}">Сотрудники</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container">
+    <div class="content">
+      <div class="text-books">
+        <div class="h2">Библиотека им. И. Раззакова</div>
+        <hr>
+      </div>
+      <div class="all-books">
+      {% for Book in Book_list %}
+        <div class="book">
+          <h2><a href="book/{{ Book.id }}/">{{ Book.book_title }}</a></h2>
+          <p class="image-center"><img src="../../static/images/book1.png" width="200" height="150" alt=""></p>
+          <hr>
+          <p class="category">Категория: {{ Book.book_category }}</p>
+          <p class="number_of_pages">Кол-во страниц: {{ Book.number_of_pages }}</p>
+          <p class="author_of_book">Автор книги: {{ Book.author }}</p>
+          <p class="published_author">Опубликовал: {{ Book.published_author }}</p>
+        </div>
+      {% endfor %}
+      </div>
+    </div>
+  </div>
+</body>
+</html>
